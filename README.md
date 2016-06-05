@@ -20,3 +20,14 @@ enregistrer une image via python
                         camera = picamera.PiCamera()
                         camera.capture('*.png')         (* Nom de la video)
 $mémoirePrendre une photo : (testé ok)
+
+Stream video: 
+VLC : 
+sur la raspberry : $ raspivid -t 0 -n --width 1280 --height 720 -o - | cvlc stream:///dev/stdin --sout '#standard{access=http,mux=ts,dst=:8090}' :demux=h264
+
+cela active l'envois du stream vidéo (sur le port 8090)
+
+sur le périphérique:  $ cvlc http://adresse_ip_du_pi:8090
+(normalement l'adresse ip est statique, 172.20.10.2)
+
+
